@@ -1,24 +1,34 @@
 import requests 
+import re
 from bs4 import BeautifulSoup
 from csv import writer
 
 
-response = requests.get('https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html')
+response = requests.get('https://www.texasfootball.com/recruiting/rankings/?ref=subnav')
 
 soup = BeautifulSoup(response.text, 'html.parser')
 
-posts = soup.find(class_='product_main')
+posts = soup.find(class_='c-rcrt-rankings__list')
+#print(posts.span.text)
 
 
-with open('post.csv', 'w') as csv_file:
+with open('recruits.csv', 'w') as csv_file:
     csv_writer = writer(csv_file)
-    headers = ['title', 'price']
+    headers = ['name', 'rank']
     csv_writer.writerow(headers)
 
     for item in posts:
-        title = soup.find('h1').get_text()
-        price = soup.find(class_='price_color').get_text()
-        csv_writer.writerow([title, price])
+        names = soup.find_all('span')
+        for name in names:
+            print(name.text)
+            csv_writer.writerow([name.text])
+        ranks = soup.find_all(class_='c-rcrt-rankings__list-player-col c-rcrt-rankings__list-player-col-rank')
+        for rank in ranks:
+            print(rank.text)
+            csv_writer.writerow([rank.text])
+        #print(name)
+        
+        
     
 
 

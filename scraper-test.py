@@ -34,13 +34,13 @@ soup = BeautifulSoup(html_doc, 'html.parser')
 
 # looping through all items with a sister class
 
-# for item in soup.select('.sister'):
-    # print(item.get_text())
+for item in soup.select('.sister'):
+     print(item.get_text())
 
 # Navigation #
 # el = soup.body.contents[1]
 # el = soup.find(id='link2').find_previous_sibling()
-el = soup.find('p').get_text()
+# el = soup.find('p').get_text()
 
 
-print(el)
+#print(el)
