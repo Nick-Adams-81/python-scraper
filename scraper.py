@@ -9,7 +9,7 @@ response = requests.get('https://www.texasfootball.com/recruiting/rankings/?ref=
 soup = BeautifulSoup(response.text, 'html.parser')
 
 posts = soup.find(class_='c-rcrt-rankings__list')
-#print(posts.span.text)
+#print(posts)
 
 
 with open('recruits.csv', 'w') as csv_file:
@@ -20,14 +20,16 @@ with open('recruits.csv', 'w') as csv_file:
     for item in posts:
         names = soup.find_all('span')
         for name in names:
-            print(name.text)
-            csv_writer.writerow([name.text])
+            new_name = name.get_text()
+            print(new_name)
+            csv_writer.writerow([new_name])
         ranks = soup.find_all(class_='c-rcrt-rankings__list-player-col c-rcrt-rankings__list-player-col-rank')
         for rank in ranks:
-            print(rank.text)
-            csv_writer.writerow([rank.text])
-        #print(name)
-        
+            new_rank = rank.get_text()
+            print(new_rank)
+            csv_writer.writerow([new_rank])
+            
+   
         
     
 
