@@ -25,7 +25,7 @@ soup = BeautifulSoup(html_doc, 'html.parser')
 # el = soup.find('p')
 # find_all() or findAll() #
 # el = soup.find_all('a')
-# el = soup.find_all('p')[1]
+el = soup.find_all('p')[0]
 # el = soup.find(id='link1')
 # el = soup.find(class_='sister')
 
@@ -34,8 +34,8 @@ soup = BeautifulSoup(html_doc, 'html.parser')
 
 # looping through all items with a sister class
 
-for item in soup.select('.sister'):
-     print(item.get_text())
+#for item in soup.select('.sister'):
+     #print(item.get_text())
 
 # Navigation #
 # el = soup.body.contents[1]
@@ -43,4 +43,4 @@ for item in soup.select('.sister'):
 # el = soup.find('p').get_text()
 
 
-#print(el)
+print(el)

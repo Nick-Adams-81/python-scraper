@@ -9,27 +9,21 @@ response = requests.get('https://www.texasfootball.com/recruiting/rankings/?ref=
 soup = BeautifulSoup(response.text, 'html.parser')
 
 posts = soup.find(class_='c-rcrt-rankings__list')
-
-
-with open('recruits.csv', 'w') as csv_file:
+print(posts)
+with open('recruits(class of 2021).csv', 'w') as csv_file:
     csv_writer = writer(csv_file)
-    headers = ['name', 'rank', 'commited']
+    headers = ['Name', 'Rank', 'Commited', 'Position', 'Position rank', 'School']
     csv_writer.writerow(headers)
 
     for item in posts:
         names = item.find('span').get_text()
-        #print(names)
         ranks = item.find(class_='c-rcrt-rankings__list-player-col c-rcrt-rankings__list-player-col-rank').get_text()
-        #print(ranks)
-        position = item.find(class_='c-rcrt-rankings__list-player-col').get_text()
-        print(position)
+        position = list(item.stripped_strings)[4]
+        position_rank = list(item.stripped_strings)[5]
+        school = list(item.stripped_strings)[2]
         commited = item.find(class_='c-rcrt-rankings__list-player-commit-mbl').get_text()
-        #print(commited)
-
-
-
-
-        csv_writer.writerow([names, ranks, commited])
+        #print(list(item.stripped_strings))
+        csv_writer.writerow([names, ranks, commited, position, position_rank, school])
         
    
         
