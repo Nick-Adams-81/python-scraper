@@ -1,19 +1,44 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+import pandas as pd
 
 driver = webdriver.Chrome('/chromedriver')
-driver.get('https://247sports.com/Season/2021-Football/CompositeRecruitRankings/?InstitutionGroup=highschool&State=TX')
+driver.get('')
 
-search = driver.find_element_by_class_name('rankings-page__list')
-print(search.text)
+players = driver.find_elements_by_class_name('rankings-page__list-item')
+
+player_list = []
+
+for player in players:
+    rank = player.find_element_by_class_name('primary').text
+    name = player.find_element_by_class_name('rankings-page__name-link').text
+    position = player.find_element_by_class_name('position').text
+    metrics = player.find_element_by_class_name('metrics').text
+    school = player.find_element_by_class_name('meta').text
+    player_info = {
+        'rank': rank,
+        'name': name,
+        'position': position,
+        'height / weight': metrics,
+        'school': school
+    }
+
+    player_list.append(player_info)
+    print(player_list)
+   
+   
+#df = pd.DataFrame(player_list)
+#print(df)
+
+
+  
+
+    
 
 
 
 
-#with open('Texas high school recruits(class of 2021).csv', 'w') as csv_file:
-    #csv_writer = writer(csv_file)
-    #headers = ['Name', 'Rank', 'School', 'Position', 'Position rank', 'Commited']
-    #csv_writer.writerow(headers)
+
+
   
 
 
