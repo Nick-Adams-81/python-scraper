@@ -15,19 +15,17 @@ for player in players:
     metrics = player.find_element_by_class_name('metrics').text
     school = player.find_element_by_class_name('meta').text
     player_info = {
-        'rank': rank,
-        'name': name,
-        'position': position,
-        'height / weight': metrics,
-        'school': school
+        'Rank': rank,
+        'Name': name,
+        'Position': position,
+        'Height / Weight': metrics,
+        'School': school
     }
 
     player_list.append(player_info)
-    print(player_list)
-   
-   
-#df = pd.DataFrame(player_list)
-#print(df)
+    
+    players_df = pd.DataFrame(player_list)
+    print(players_df)
 
 
   
