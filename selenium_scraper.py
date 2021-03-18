@@ -4,12 +4,12 @@ import pandas as pd
 import time
 
 driver = webdriver.Chrome('/chromedriver')
-driver.get('')
+driver.get('https://247sports.com/Season/2022-Football/RecruitRankings/?InstitutionGroup=highschool&State=TX')
 
 
 players = driver.find_elements_by_class_name('rankings-page__list-item')
 player_list = []
-time.sleep(7)
+time.sleep(5)
 
 with open('Texas high school recruits(class of 2022).csv', 'w') as csv_file:
     csv_writer = writer(csv_file)
