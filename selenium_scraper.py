@@ -4,10 +4,7 @@ import pandas as pd
 import time
 
 driver = webdriver.Chrome('/chromedriver')
-driver.get('https://247sports.com/Season/2022-Football/RecruitRankings/?InstitutionGroup=highschool&State=TX')
-
-
-
+driver.get('')
 
 
 players = driver.find_elements_by_class_name('rankings-page__list-item')

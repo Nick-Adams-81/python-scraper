@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from csv import writer
 
 
-response = requests.get('https://www.texasfootball.com/recruiting/rankings/?ref=subnav')
+response = requests.get('')
 
 soup = BeautifulSoup(response.text, 'html.parser')
 
